@@ -4,10 +4,37 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    <ion-title>Listar Carro</ion-title>
+    <ion-title>Lista Carro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-grid>
+
+    <!-- lista de carros do usuario -->
+    <ion-row *ngIf="carros.length > 0">
+
+      <ion-col>
+        <ion-item *ngFor="let carro of carros">
+          {{carro.modelo}}
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <!-- botao para cria um novo carro -->
+    <ion-row *ngIf="carros.length == 0">
+      
+      <ion-col>
+        <h2>Você ainda não possui carros cadastre-se agora!</h2>
+        <ion-button expand="full" (click)="cadastrarCarro();">Cadastrar carro</ion-button>
+      </ion-col>
+
+    </ion-row>
+
+
+  </ion-grid>
+
 
 </ion-content>

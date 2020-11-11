@@ -15,6 +15,7 @@ export class LoginService implements ILoginService {
     constructor(private _http: HttpClient){
 
     }
+     
     login(dados: Login): Observable<Usuario> {
         if(!dados.email) { throw new Error('Campo email é obrigatorio'); }
         if(!dados.senha) { throw new Error('Campo senha é obrigatorio'); }

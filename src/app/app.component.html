@@ -3,8 +3,12 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Sprint automovél</ion-list-header>
-          <ion-note>administrador@desenvolvimento.net.br</ion-note>
+          <ion-list-header>App Combustivel</ion-list-header>
+          <ion-note>appcombustivel@gmail.com</ion-note>
+
+          <ion-menu-toggle>
+            <ion-button (click)="fazerLogout();">Sair</ion-button>
+          </ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
@@ -13,7 +17,7 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
+         
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

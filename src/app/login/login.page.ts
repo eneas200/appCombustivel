@@ -39,7 +39,6 @@ export class LoginPage implements OnInit {
   fazerLogin(){
     console.log(this.login);
     this._loginService.login(this.login).subscribe((res) =>{
-
       this._usuarioService.logar(res);
       this._route.navigate(['/listar-carro']);
       console.log(res);
@@ -48,6 +47,9 @@ export class LoginPage implements OnInit {
 
   fazerCadastro(){
     this._route.navigate(['/cadastrar-usuario']);
+  }
+  fazerLogout(){
+    this._usuarioService.logout();
   }
 
 }

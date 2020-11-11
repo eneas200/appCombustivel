@@ -6,6 +6,6 @@ export interface ICarroService {
     remove(carro_id: number) : void;
     editar(carro: Carro): Observable<Carro>;
     buscar(carro_id: number) : Observable<Carro>;
-    listar(): Observable<Carro[]>;
+    listar(): Promise<Carro[]>;
     calcularLitros(carro: Carro, tipoCombustivel: number, distancia: number): number;
 }

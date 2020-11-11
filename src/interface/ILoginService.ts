@@ -4,4 +4,5 @@ import { Usuario } from 'src/models/Usuario';
 
 export interface ILoginService {
     login(dados: Login) : Observable<Usuario>;
+     
 }

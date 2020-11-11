@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { UsuarioService } from 'src/services/UsuarioService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +40,10 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private _usuarioService: UsuarioService,
+    private _menu: MenuController,
+    private _router: Router,
   ) {
     this.initializeApp();
   }
@@ -56,4 +61,14 @@ export class AppComponent implements OnInit {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
   }
+
+  fazerLogout(){
+    // limpar o localStorage
+    this._usuarioService.logout();
+    // bloquear arraste do menu
+    this._menu.swipeGesture(false);
+    // redirecionar para pagina de login
+    this._router.navigate(['/login']);
+  }
+
 }
