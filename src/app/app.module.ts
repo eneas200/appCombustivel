@@ -21,7 +21,9 @@ import { ErroGlobais } from 'src/shared/ErrosGlobais';
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      swipeBackEnabled: false
+    }),
     AppRoutingModule,
     HttpClientModule
   ],

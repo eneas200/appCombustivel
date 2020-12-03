@@ -15,15 +15,21 @@ export class ListarCarroPage implements OnInit {
     this.obterCarros();
   }
 
-  cadastrarCarro(){
-    this._router.navigate(['/cadastrar-carro']);
-  }
-
   async obterCarros(){
     const listarCarro = await this._carroService.listar();
     this.carros = listarCarro;
     console.log(this.carros);
   }
+
+  cadastrarCarro(){
+    this._router.navigate(['/cadastrar-carro']);
+  }
+
+  visualizarCarro(carro_id: number){
+    this._router.navigate([`/carro/${carro_id}`]);
+  }
+
+  
 
   ngOnInit() {
   }

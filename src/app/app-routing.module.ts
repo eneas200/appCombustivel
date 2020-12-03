@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./calcular-litros/calcular-litros.module').then( m => m.CalcularLitrosPageModule)
   },
   {
-    path: 'carro',
+    path: 'carro/:carroId',
     loadChildren: () => import('./carro/carro.module').then( m => m.CarroPageModule)
   },
   {

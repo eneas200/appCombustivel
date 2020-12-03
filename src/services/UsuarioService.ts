@@ -10,8 +10,11 @@ import { Global } from 'src/shared/Global';
     'providedIn':'root'
 })
 export class UsuarioService  implements IUsuarioService{
-    public apiUrl: string = `${Global.ApiUrl}usuario`;
+    
+    public apiUrl: string = `${Global.ApiUrl}usuarios`;
+    
     constructor(private _httpClient: HttpClient){}
+    
     // retorna o usuario pelo id
     buscarUsuario(): Observable<Usuario> {
         const usuario: Usuario = this.retornarUsuarioLogado();
@@ -23,7 +26,8 @@ export class UsuarioService  implements IUsuarioService{
         if(!usuario.email) throw new Error("campo email é obrigatorio");
         if(!usuario.senha) throw new Error("campo senha é obrigatorio");
         if(usuario.senha != usuario.confirmarSenha) throw new Error("As senhas não coincidem!");
-        throw new Error("já pode salvar!");
+        
+        return this._httpClient.post<Usuario>(this.apiUrl, usuario);
     }
     // atualiza os dados do usuario
     atualizar(usuario: Usuario): Observable<Usuario> {

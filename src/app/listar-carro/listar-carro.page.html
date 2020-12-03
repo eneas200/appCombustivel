@@ -16,8 +16,8 @@
     <ion-row *ngIf="carros.length > 0">
 
       <ion-col>
-        <ion-item *ngFor="let carro of carros">
-          {{carro.modelo}}
+        <ion-item *ngFor="let carro of carros" (click)="visualizarCarro(carro.id);"> 
+          {{carro.modelo}} - {{carro.montadora }}
         </ion-item>
       </ion-col>
 

@@ -13,7 +13,7 @@ export class CarroService implements ICarroService {
     
     public apiUrl: string = Global.ApiUrl+"carros";
     private _usuarioLogado: Usuario = new Usuario();
-    
+    public carros: Carro[] = [];
     constructor(
         private _usuarioService: UsuarioService,
         private _http: HttpClient
@@ -28,7 +28,6 @@ export class CarroService implements ICarroService {
         if(!carro.consumoGasolina) throw new Error('O campo cosumo gasolina deve ser prenchido!');
         
         carro.usuario_id = this._usuarioLogado.id
-        console.log(carro);
         return this._http.post<Carro>(this.apiUrl, carro);
     }
     remove(carro_id: number): void {
@@ -45,6 +44,7 @@ export class CarroService implements ICarroService {
         const promise = new Promise<Carro[]>(async (resolve, reject) =>{
             try{
                 const usuario = await this._usuarioService.buscarUsuario().toPromise();
+                this.carros = usuario.carros;
                 resolve(usuario.carros);
             } catch(e) {
                 reject(e)
@@ -54,7 +54,24 @@ export class CarroService implements ICarroService {
     }
     
     calcularLitros(carro: Carro, tipoCombustivel: number, distancia: number): number {
-        throw new Error('Method not implemented.');
+        let resultado: number = 0;
+        
+        if(!carro) throw new Error("Escolha um carro");
+        if(!distancia) throw new Error("Preencha a distancia");
+
+        let valor_combustivel: number = 0;
+
+        if(tipoCombustivel == 1){
+            valor_combustivel = carro.consumoGasolina;
+        } else {
+            valor_combustivel = carro.consumoAlcool;
+        }
+
+        resultado = distancia/valor_combustivel;
+
+        resultado = parseFloat(resultado.toFixed(2));
+
+        return resultado;
     }
     
 }
